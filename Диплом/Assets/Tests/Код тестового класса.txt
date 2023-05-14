@@ -1,0 +1,36 @@
+public class UnitTest1
+    {
+        [TestMethod]
+        public void TestMethod1()
+        {
+            PredictiveMachine machine = new PredictiveMachine();
+
+            var expectedXPos = 12;
+            var expectedYPos = 15.707f;
+
+            List<Vector3> vector3s = new List<Vector3>(){
+                new Vector3(1, 0, 0),
+                new Vector3(2, 1, 0),
+                new Vector3(3, 3, 0),
+                new Vector3(3, 4, 0),
+                new Vector3(3, 5, 0),
+                new Vector3(4, 4, 0),
+                new Vector3(5, 6, 0),
+                new Vector3(7, 8, 0),
+                new Vector3(8, 10, 0),
+                new Vector3(9, 12, 0)
+            };
+            float[] timeArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int time = 13;
+            machine.SetArrayInfo(vector3s, timeArray, time);
+
+            machine.LinearRegression();
+
+            float actualXPos = machine.predictedValueX;
+            float actualYPos = machine.predictedValueY;
+
+            Assert.AreEqual(expectedXPos, actualXPos);
+            Assert.AreEqual(expectedYPos, actualYPos);
+        }
+    }
+}
